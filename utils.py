@@ -13,16 +13,16 @@ from gomoku_game import make_move
 
 def init_agent(hidden_size, layers, lr=1e-3, width=20, alpha=0.1, moment=0.9, loss='mse'):
 	model = Sequential()
-	model.add(Dense(2 * width**2, init='lecun_uniform', input_shape=(2 * width**2,)))
+	model.add(Dense(2 * width**2, kernel_initializer='lecun_uniform', input_shape=(2 * width**2,)))
 	model.add(LeakyReLU(alpha=alpha))
 
 	for i in range(layers):
-		model.add(Dense(hidden_size, init='lecun_uniform'))
+		model.add(Dense(hidden_size, kernel_initializer='lecun_uniform'))
 		model.add(LeakyReLU(alpha=alpha))
 		model.add(Dropout(0.2))
 
 	# linear output layer to generate real-valued outputs
-	model.add(Dense(width**2, init='lecun_uniform'))
+	model.add(Dense(width**2, kernel_initializer='lecun_uniform'))
 	model.add(Activation('linear'))
 
 	opt = SGD(lr=lr, momentum=moment, decay=1e-18, clipnorm=1.)
