@@ -25,6 +25,12 @@ def training(agent1, agent2, config, save_path, verb=[0, 0]):
 				count += 1
 				# predict q value size: [1, width ** 2]
 				qval = agent.predict(state.reshape(1, 2 * config['width']**2))
+				print('state')
+				print(state)
+				print('available')
+				print(available)
+				print('qval')
+				print(qval)
 				# epsilon greedy to select an action
 				if random.random() < config['epsilon']:
 					while True:
